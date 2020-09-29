@@ -24,7 +24,28 @@ class ProductsController extends Controller
                 //echo "<pre>";print_r($categoryDetails);
                 //echo "<pre>";print_r($categoryProducts);die;
 
-                //If Sort Option is selected by User
+                //If Fabric Filter is selected
+                if(isset($data['fabric']) && !empty($data['fabric'])){
+                    $categoryProducts->whereIn('products.fabric',$data['fabric']);
+                }
+                //If Sleeve Filter is selected
+                if(isset($data['sleeve']) && !empty($data['sleeve'])){
+                    $categoryProducts->whereIn('products.sleeve',$data['sleeve']);
+                }
+                //If Pattern Filter is selected
+                if(isset($data['pattern']) && !empty($data['pattern'])){
+                    $categoryProducts->whereIn('products.pattern',$data['pattern']);
+                }
+                //If Fit Filter is selected
+                if(isset($data['fit']) && !empty($data['fit'])){
+                    $categoryProducts->whereIn('products.fit',$data['fit']);
+                }
+                //If Occasion Filter is selected
+                if(isset($data['occasion']) && !empty($data['occasion'])){
+                    $categoryProducts->whereIn('products.occasion',$data['occasion']);
+                }
+
+                //If Sort Option is selected
                 if(isset($data['sort']) && !empty($data['sort'])){
                     if($data['sort']=="product_latest"){
                         $categoryProducts->orderBy('id','Desc');
@@ -59,8 +80,19 @@ class ProductsController extends Controller
                 //echo "<pre>";print_r($categoryDetails);
                 //echo "<pre>";print_r($categoryProducts);die;
                 $categoryProducts=$categoryProducts->paginate(30);
+
+                //Product Filters
+                $productFilters=Product::productFilters();
+                //dd($productFilters);
+                $fabricArray=$productFilters['fabricArray'];
+                $sleeveArray=$productFilters['sleeveArray'];
+                $patternArray=$productFilters['patternArray'];
+                $fitArray=$productFilters['fitArray'];
+                $occasionArray=$productFilters['occasionArray'];
+                $page_name='listing';
+
                 return view('front.products.listing')->with(compact('categoryDetails','categoryProducts',
-                    'url'));
+                    'url','fabricArray','sleeveArray','patternArray','fitArray','occasionArray','page_name'));
             }else{
                 abort(404);
             }

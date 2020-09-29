@@ -170,12 +170,16 @@ class ProductsController extends Controller
             return redirect('admin/products');
         }
 
-        // Filter Arrays
-        $fabricArray = array('Cotton','Polyester','Wool');
-        $sleeveArray = array('Full Sleeve','Half Sleeve','Short Sleeve','Sleeveless');
-        $patternArray = array('Checked','Plain','Printed','Self','Solid');
-        $fitArray = array('Regular','Slim');
-        $occasionArray = array('Casual','Formal');
+        //Product Filters
+        $productFilters=Product::productFilters();
+        //dd($productFilters);
+        $fabricArray=$productFilters['fabricArray'];
+        $sleeveArray=$productFilters['sleeveArray'];
+        $patternArray=$productFilters['patternArray'];
+        $fitArray=$productFilters['fitArray'];
+        $occasionArray=$productFilters['occasionArray'];
+
+
 
         // Sections with Categories and Sub Categories
         $categories = Section::with('categories')->get();
@@ -186,7 +190,8 @@ class ProductsController extends Controller
         $brands = Brand::where('status',1)->get();
         $brands = json_decode(json_encode($brands),true);
 
-        return view('admin.products.add_edit_product')->with(compact('title','fabricArray','sleeveArray','patternArray','fitArray','occasionArray','categories','productdata','brands'));
+        return view('admin.products.add_edit_product')->
+        with(compact('title','fabricArray','sleeveArray','patternArray','fitArray','occasionArray','categories','productdata','brands'));
     }
 
     public function deleteProductImage($id)
