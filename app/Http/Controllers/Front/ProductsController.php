@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Pagination\Paginator;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
@@ -9,7 +11,8 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    public function listing($url, Request $request){
+    public function listing(Request $request){
+        Paginator::useBootstrap();
         if($request->ajax()){
             $data=$request->all();
             //dd($data);
@@ -70,6 +73,7 @@ class ProductsController extends Controller
             }
 
         }else{
+            $url=Route::getFacadeRoot()->current()->uri();
             $categoryCount=Category::where(['url'=>$url,'status'=>1])->count();
             if($categoryCount>0){
                 //echo "Category exists";die;
@@ -98,6 +102,10 @@ class ProductsController extends Controller
             }
 
         }
+
+    }
+    public function detail($code,$id){
+        return view('front.products.detail');
 
     }
 }

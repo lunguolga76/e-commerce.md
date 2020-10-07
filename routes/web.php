@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-
+use App\Category;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -86,7 +86,16 @@ Route::namespace('Front')->group(function () {
     //Home Page
     Route::get('/', 'IndexController@index');
     //Listing/Category Page
-    Route::get('/{url}', 'ProductsController@listing');
+    //Route::get('/{url}', 'ProductsController@listing');
+
+    //Get Category URL's
+    $catUrls=Category::select('url')->where('status',1)->get()->pluck('url')->toArray();
+    //dd($catUrls);
+    foreach ($catUrls as $url){
+        Route::get('/'.$url, 'ProductsController@listing');
+    }
+    //Product Details Route
+    Route::get('/product/{code}/{id}', 'ProductsController@detail');
 
 });
 
