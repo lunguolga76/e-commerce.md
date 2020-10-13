@@ -1,9 +1,10 @@
 $(document).ready(function () {
-    //Verifing if the jQuery works
-   // alert("test");
-   /* $("#sort").on('change',function () {
-        this.form.submit();
-    });*/
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $("#sort").on('change',function () {
         //alert("test");
         var sort= $(this).val();
@@ -117,4 +118,25 @@ $(document).ready(function () {
         return filter;
 
     }
+    $("#getPrice").change(function () {
+       // alert("test");
+        var size=$(this).val();
+        if(size==""){
+            alert ("Please Select Size");
+            return false;
+        }
+        var product_id=$(this).attr("product-id");
+        //alert(product_id);
+        $.ajax({
+            url:'/get-product-price',
+            data:{size:size,product_id:product_id},
+            type:'post',
+            success:function (resp) {
+                //alert(resp);
+                $(".getAttrPrice").html("$"+resp);
+            },error:function(){
+                alert("Error");
+            }
+        });
+    });
 });
