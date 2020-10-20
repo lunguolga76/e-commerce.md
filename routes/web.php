@@ -98,6 +98,8 @@ Route::namespace('Front')->group(function () {
     Route::get('/product/{id}', 'ProductsController@detail');
     //Get Attribute Product Price
     Route::post('/get-product-price','ProductsController@getProductPrice');
+    //Add to Cart
+    Route::post('/add-to-cart', 'ProductsController@addtocart');
 
 });
 
