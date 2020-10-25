@@ -13,7 +13,7 @@
                             <li class="span3">
                                 <div class="thumbnail">
                                     <i class="tag"></i>
-                                    <a href="product_details.html">
+                                    <a href="{{url('product/'.$item['id'])}}">
                                         <?php $product_image_path='images/product_images/small/'.$item['main_image']; ?>
                                         @if(!empty($item['main_image']) && file_exists($product_image_path))
                                         <img src="{{asset($product_image_path)}}" alt="">
@@ -23,7 +23,7 @@
                                     </a>
                                     <div class="caption">
                                         <h5>{{$item['product_name']}}</h5>
-                                        <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">${{$item['product_price']}}</span></h4>
+                                        <h4><a class="btn" href="{{url('product/'.$item['id'])}}">VIEW</a> <span class="pull-right">${{$item['product_price']}}</span></h4>
                                     </div>
                                 </div>
                             </li>
@@ -43,8 +43,8 @@
         @foreach($newProducts as $product)
         <li class="span3">
             <div class="thumbnail">
-                <a  href="product_details.html">
-                    <?php $product_image_path='images/product_images/small'.$product['main_image']; ?>
+                <a  href="{{url('product/'.$product['id'])}}">
+                    <?php $product_image_path='images/product_images/small'.$item['main_image']; ?>
                     @if(!empty($product['main_image']) && file_exists($product_image_path))
                         <img style="width: 150px;" src="{{asset('$product_image_path')}}" alt="">
                     @else
@@ -56,7 +56,7 @@
                     <p>
                         {{$product['description']}}
                     </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html">
+                    <h4 style="text-align:center"><a class="btn" href="{{url('product/'.$item['id'])}}">
                             <i class="icon-zoom-in"></i></a>
                         <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a>
                         <a class="btn btn-primary" href="#">${{$product['product_price']}}</a></h4>
