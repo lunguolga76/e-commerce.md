@@ -101,7 +101,7 @@ Route::namespace('Front')->group(function () {
     //Add to Cart
     Route::post('/add-to-cart', 'ProductsController@addtocart');
 
-    //Shoping Cart route
+    //Shopping Cart route
     Route::get('/cart', 'ProductsController@cart');
 
 });

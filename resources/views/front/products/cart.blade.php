@@ -53,55 +53,39 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($userCartItems as $item)
             <tr>
-                <td> <img width="60" src="themes/images/products/4.jpg" alt=""/></td>
-                <td>Casual T-Shirt<br/>Color : Black</td>
+                <td> <img width="60" src="{{asset('images/product_images/small/'.$item['product']['main_image'])}}" alt=""/></td>
+                <td>{{$item['product']['product_name']}}<br/>Color : {{$item['product']['product_color']}}
+                    <br/>Size : {{$item['size']}}</td>
                 <td>
-                    <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
+                    <div class="input-append">
+                        <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text">
+                        <button class="btn" type="button"><i class="icon-minus"></i></button>
+                        <button class="btn" type="button"><i class="icon-plus"></i></button>
+                        <button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
                 </td>
-                <td>Rs.1000.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.1000.00</td>
+                <td>$.{{$item['product']['product_price']}}</td>
+                <td>$.0.00</td>
+                <td>$.0.00</td>
+                <td>$.1000.00</td>
             </tr>
-            <tr>
-                <td> <img width="60" src="themes/images/products/8.jpg" alt=""/></td>
-                <td>Casual T-Shirt<br/>Color : Black</td>
-                <td>
-                    <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1"  size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
-                </td>
-                <td>Rs.1000.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.1000.00</td>
-            </tr>
-            <tr>
-                <td> <img width="60" src="themes/images/products/3.jpg" alt=""/></td>
-                <td>Casual T-Shirt<br/>Color : Blue</td>
-                <td>
-                    <div class="input-append"><input class="span1" style="max-width:34px" placeholder="1"  size="16" type="text"><button class="btn" type="button"><i class="icon-minus"></i></button><button class="btn" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
-                </td>
-                <td>Rs.1000.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.0.00</td>
-                <td>Rs.1000.00</td>
-            </tr>
-
+            @endforeach
             <tr>
                 <td colspan="6" style="text-align:right">Total Price:	</td>
-                <td> Rs.3000.00</td>
+                <td> $.3000.00</td>
             </tr>
             <tr>
                 <td colspan="6" style="text-align:right">Total Discount:	</td>
-                <td> Rs.0.00</td>
+                <td> $.0.00</td>
             </tr>
             <tr>
                 <td colspan="6" style="text-align:right">Total Tax:	</td>
-                <td> Rs.0.00</td>
+                <td> $.0.00</td>
             </tr>
             <tr>
-                <td colspan="6" style="text-align:right"><strong>TOTAL (Rs.3000 - Rs.0 + Rs.0) =</strong></td>
-                <td class="label label-important" style="display:block"> <strong> Rs.3000.00 </strong></td>
+                <td colspan="6" style="text-align:right"><strong>TOTAL ($.3000 - Rs.0 + Rs.0) =</strong></td>
+                <td class="label label-important" style="display:block"> <strong> $.3000.00 </strong></td>
             </tr>
             </tbody>
         </table>
@@ -156,6 +140,5 @@
         <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
 
     </div>
-    </div></div>
-    </div>
+
 @endsection

@@ -6,7 +6,7 @@ use App\ProductsAttribute;
 
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Session;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Pagination\Paginator;
 use App\Category;
@@ -161,38 +161,35 @@ class ProductsController extends Controller
                 //User is not logged in
                 $countProducts=Cart::where(['product_id'=>$data['product_id'],
                     'size'=>$data['size'],'session_id'=>Session::get('session_id')])->count();
-
             }
-
             if($countProducts>0){
                 $message="Product already exists in the cart!";
                 session::flash('error_message',$message);
                 return redirect()->back();
-
             }
-
             //Save Product in Cart
-            /*Cart::insert(['session_id'=>$session_id,
-                'product_id'=>$data['product_id'],
-                'size'=>$data['size'],
-                'quantity'=>$data['quantity']]);*/
-
             $cart=new Cart;
             $cart->session_id=$session_id;
             $cart->product_id=$data['product_id'];
             $cart->size=$data['size'];
             $cart->quantity=$data['quantity'];
-            $cart->session_id=$data['product_id'];
             $cart->save();
 
             $message="Product has been added to the cart";
             session::flash('success_message',$message);
             return redirect()->back();
+
+            /*Cart::insert(['session_id'=>$session_id,
+                'product_id'=>$data['product_id'],
+                'size'=>$data['size'],
+                'quantity'=>$data['quantity']]);*/
         }
     }
 
     public function cart(){
-        return view('front.products.cart');
+        $userCartItems=Cart::userCartItems();
+        //dd($userCartItems);
+        return view('front.products.cart')->with(compact('userCartItems'));
 
     }
 }
