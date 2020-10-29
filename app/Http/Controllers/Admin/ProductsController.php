@@ -282,7 +282,7 @@ class ProductsController extends Controller
             }
         }
         //echo"test";die;
-        $productdata=Product::select('id','product_name','product_code','product_color','main_image')->with('attributes')->find($id);
+        $productdata=Product::select('id','product_name','product_code','product_color','product_price','main_image')->with('attributes')->find($id);
         $productdata=json_decode(json_encode($productdata),true);
         //dd($productdata);
         $title='Product Attributes';
