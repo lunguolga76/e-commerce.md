@@ -132,8 +132,15 @@ $(document).ready(function () {
             data:{size:size,product_id:product_id},
             type:'post',
             success:function (resp) {
-                //alert(resp);
-                $(".getAttrPrice").html("$"+resp);
+                //alert(resp['product_price']);
+                //alert(resp['dicounted_price']);
+                //return false;
+                if(resp['discounted_price']>0){
+                    $(".getAttrPrice").html("<del style='color:red;'><small style='color: red;'> $ " + resp['product_price']+"</small></del> $" + resp['discounted_price']);
+                }else{
+                    $(".getAttrPrice").html("$ " + resp['product_price']);
+                }
+
             },error:function(){
                 alert("Error");
             }
