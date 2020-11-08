@@ -26,7 +26,7 @@ $sections=Section::sections();
                     <a class="brand" href="#">Lungu Developers</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="{{route('home')}}">Home</a></li>
                             @foreach($sections as $section)
                                 @if(count($section['categories'])>0)
                             <li class="dropdown">

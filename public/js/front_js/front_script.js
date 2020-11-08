@@ -135,8 +135,10 @@ $(document).ready(function () {
                 //alert(resp['product_price']);
                 //alert(resp['dicounted_price']);
                 //return false;
-                if(resp['discounted_price']>0){
-                    $(".getAttrPrice").html("<del style='color:red;'><small style='color: red;'> $ " + resp['product_price']+"</small></del> $" + resp['discounted_price']);
+                if(resp['discount']>0){
+                    $(".getAttrPrice").html
+                    ("<del style='color:red;'><small style='color: red;'> $ " + resp['product_price']+
+                        "</small></del> $" + resp['final_price']);
                 }else{
                     $(".getAttrPrice").html("$ " + resp['product_price']);
                 }

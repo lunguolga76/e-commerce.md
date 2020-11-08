@@ -178,7 +178,7 @@ class ProductsController extends Controller
 
             $message="Product has been added to the cart";
             session::flash('success_message',$message);
-            return redirect()->back();
+            return redirect('cart');
 
             /*Cart::insert(['session_id'=>$session_id,
                 'product_id'=>$data['product_id'],
