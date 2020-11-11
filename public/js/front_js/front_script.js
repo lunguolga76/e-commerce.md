@@ -148,4 +148,24 @@ $(document).ready(function () {
             }
         });
     });
+    //Update Cart Items
+    $(document).on('click','.btnItemUpdate', function () {
+if($(this).hasClass('qtyMinus')){
+   //If qtyMinus buttons gets clicked byUser
+    var quantity=$(this).prev().val();
+   if(quantity<=1){
+       alert("Item quantity must be 1 or greater!")
+       return false;
+   }else {
+       new_qty=parseInt(quantity)-1;
+
+   }
+}
+        if($(this).hasClass('qtyPlus')) {
+            //If qtyPlus buttons gets clicked byUser
+            var quantity = $(this).prev().prev().val();
+            new_qty = parseInt(quantity) + 1;
+        }
+        alert(new_qty);
+    });
 });
