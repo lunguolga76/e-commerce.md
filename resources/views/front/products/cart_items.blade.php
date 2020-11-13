@@ -1,12 +1,12 @@
 
 <?php use App\Product; ?>
-d        <table class="table table-bordered">
+       <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Product</th>
                 <th colspan="2">Description</th>
                 <th>Quantity/Update</th>
-                <th>MRP</th>
+                <th>Unit Price</th>
                 <th>Category/Product <br>Discount</br></th>
                 <th>Sub Total</th>
             </tr>
@@ -21,9 +21,9 @@ d        <table class="table table-bordered">
                     <br/>Size : {{$item['size']}}</td>
                 <td>
                     <div class="input-append">
-                        <input class="span1" style="max-width:34px" value="{{$item['quantity']}}" id="appendedInputButtons" size="16" type="text">
+                        <input class="span" style="max-width:34px" value="{{$item['quantity']}}" id="appendedInputButtons" size="30" type="text">
                         <button class="btn btnItemUpdate qtyMinus" type="button" data-cartid="{{$item['id']}}"><i class="icon-minus"></i></button>
-                        <button class="btn btnItemUpdate qrtPlus" type="button" data-cartid="{{$item['id']}}"><i class="icon-plus"></i></button>
+                        <button class="btn btnItemUpdate qtyPlus" type="button" data-cartid="{{$item['id']}}"><i class="icon-plus"></i></button>
                         <button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
                 </td>
                 <td>$ {{$attrPrice['product_price']}}</td>

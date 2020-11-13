@@ -164,8 +164,19 @@ if($(this).hasClass('qtyMinus')){
         if($(this).hasClass('qtyPlus')) {
             //If qtyPlus buttons gets clicked byUser
             var quantity = $(this).prev().prev().val();
-            new_qty = parseInt(quantity) + 1;
+            new_qty = parseInt(quantity)+1;
         }
-        alert(new_qty);
+        var cartid=$(this).data('cartid');
+        $.ajax({
+            data:{"cartid":cartid,"qty":new_qty},
+            url:'/update-cart-item-qty',
+            type:'post',
+            success:function (resp) {
+                //alert(resp)
+                $("#AppendCartItems").html(resp.view);
+            },error:function () {
+                alert("Error");
+            }
+    });
     });
 });
