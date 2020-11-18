@@ -125,7 +125,7 @@ $(document).ready(function () {
             alert ("Please Select Size");
             return false;
         }
-        var product_id=$(this).attr("product-id");
+        var product_id=$(this).attr("product_id");
         //alert(product_id);
         $.ajax({
             url:'/get-product-price',
@@ -150,13 +150,13 @@ $(document).ready(function () {
     });
     //Update Cart Items
     $(document).on('click','.btnItemUpdate', function () {
-if($(this).hasClass('qtyMinus')){
-   //If qtyMinus buttons gets clicked byUser
-    var quantity=$(this).prev().val();
-   if(quantity<=1){
+     if($(this).hasClass('qtyMinus')){
+     //If qtyMinus buttons gets clicked byUser
+     var quantity=$(this).prev().val();
+      if(quantity<=1){
        alert("Item quantity must be 1 or greater!")
        return false;
-   }else {
+        }else {
        new_qty=parseInt(quantity)-1;
 
    }
@@ -172,7 +172,9 @@ if($(this).hasClass('qtyMinus')){
             url:'/update-cart-item-qty',
             type:'post',
             success:function (resp) {
-                //alert(resp)
+                if(resp.status==false){
+                    alert(resp.message);
+                }
                 $("#AppendCartItems").html(resp.view);
             },error:function () {
                 alert("Error");
