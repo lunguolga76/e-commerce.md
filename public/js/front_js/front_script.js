@@ -125,7 +125,7 @@ $(document).ready(function () {
             alert ("Please Select Size");
             return false;
         }
-        var product_id=$(this).attr("product_id");
+        var product_id=$(this).attr("product-id");
         //alert(product_id);
         $.ajax({
             url:'/get-product-price',
@@ -180,5 +180,22 @@ $(document).ready(function () {
                 alert("Error");
             }
     });
+    });
+    //Delete Cart Items
+    $(document).on('click','.btnItemDelete', function () {
+        var cartid=$(this).data('cartid');
+        var result=confirm("Want to delete this Cart Item ");
+        if(result){
+            $.ajax({
+                data:{"cartid":cartid},
+                url:'/delete-cart-item',
+                type:'post',
+                success:function (resp) {
+                    $("#AppendCartItems").html(resp.view);
+                },error:function () {
+                    alert("Error");
+                }
+            });
+        }
     });
 });
