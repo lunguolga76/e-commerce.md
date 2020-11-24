@@ -51,7 +51,7 @@ $sections=Section::sections();
                         <ul class="nav pull-right">
                             <li><a href="#">Contact</a></li>
                             <li class="divider-vertical"></li>
-                            <li><a href="#">Login</a></li>
+                            <li><a href="{{route('login-register-user')}}">Login</a></li>
                         </ul>
                     </div><!-- /.nav-collapse -->
                 </div>
