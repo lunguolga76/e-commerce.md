@@ -102,7 +102,7 @@ Route::namespace('Front')->group(function () {
     Route::post('/add-to-cart', 'ProductsController@addtocart');
 
     //Shopping Cart route
-    Route::get('/cart', 'ProductsController@cart');
+    Route::get('/cart', 'ProductsController@cart')->name('cart');
     //Update Cart Item Quantity
     Route::post('/update-cart-item-qty','ProductsController@updateCartItemsQty');
     //Delete
@@ -111,9 +111,11 @@ Route::namespace('Front')->group(function () {
     //Login/Register User
     Route::get('/login-register','UsersController@loginRegister')->name('login-register-user');
     //Login User
-    Route::post('/login','UsersController@loginRegister')->name('login-user');
+    Route::post('/login','UsersController@loginUser')->name('login-user');
     //Login User
     Route::post('/register', 'UsersController@registerUser')->name('register-user');
+    //Check if email already exists
+    Route::match(['get','post'],'/check-email','UsersController@checkEmail');
     //Logout User
     Route::get('/logout', 'UsersController@logoutUser')->name('logout-user');
 

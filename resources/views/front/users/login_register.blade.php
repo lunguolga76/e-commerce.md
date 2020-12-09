@@ -8,29 +8,22 @@
         </ul>
         <h3> Login / Register</h3>
         <hr class="soft"/>
+        @if(Session::has('error_message'))
+            <div class="alert alert-danger" role="alert" >
+                {{Session::get('error_message')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <div class="row">
             <div class="span4">
-                @if(Session::has('error_message'))
-                    <div class="alert alert-danger" role="alert" >
-                        {{Session::get('error_message')}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                @if(Session::has('success_message'))
-                    <div class="alert alert-success" role="alert" >
-                        {{Session::get('success_message')}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+
                 <div class="well">
                     <h5>CREATE YOUR ACCOUNT</h5><br/>
                     Enter your details to create an account.<br/><br/><br/>
-                    <form action="{{route('register-user')}}" method="post">@csrf
+                    <form id="registerForm" action="{{route('register-user')}}" method="post">@csrf
                         <div class="control-group">
                             <label class="control-label" for="name">Name</label>
                             <div class="controls">
@@ -65,17 +58,17 @@
             <div class="span4">
                 <div class="well">
                     <h5>ALREADY REGISTERED ?</h5>
-                    <form>
+                    <form id="loginForm" action="{{route('login-user')}}" method="post">@csrf
                         <div class="control-group">
-                            <label class="control-label" for="inputEmail1">Email</label>
+                            <label class="control-label" for="email">Email address</label>
                             <div class="controls">
-                                <input class="span3"  type="text" id="inputEmail1" placeholder="Email">
+                                <input class="span3"  type="text" id="email" name="email" placeholder="Enter Email">
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputPassword1">Password</label>
+                            <label class="control-label" for="password">Password</label>
                             <div class="controls">
-                                <input type="password" class="span3"  id="inputPassword1" placeholder="Password">
+                                <input class="span3"  type="password" id="password" name="password" placeholder="Enter Password">
                             </div>
                         </div>
                         <div class="control-group">

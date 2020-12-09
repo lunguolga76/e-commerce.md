@@ -198,4 +198,76 @@ $(document).ready(function () {
             });
         }
     });
+    // validate register form on keyup and submit
+    $("#registerForm").validate({
+        rules: {
+            name: "required",
+            mobile: {
+                required: true,
+                minlength: 9,
+                maxlength: 9,
+                digits: true
+            },
+            email: {
+                required: true,
+                email: true,
+                remote: "check-email"
+            },
+            password: {
+                required: true,
+                minlength: 6
+            },
+        },
+            messages: {
+                name: "Please enter your Name",
+                mobile: {
+                    required: "Please enter your mobile",
+                    minlength: "Your mobile must consist of at least 9 digits",
+                    maxlength: "Your mobile must consist of maximum 9 digits",
+                    digits: "Please enter your Valid Mobile"
+                },
+                email: {
+                    required: "Please enter your Email address",
+                    email: "Please enter a valid Email address",
+                    remote:"Email already exist"
+
+                },
+                password: {
+                    required: "Please enter your password",
+                    minlength: "Your password must be at least 6 characters long"
+                }
+            }
+
+    });
+
+    // validate login  form on keyup and submit
+    $("#loginForm").validate({
+        rules: {
+
+            email: {
+                required: true,
+                email: true,
+
+            },
+            password: {
+                required: true,
+                minlength: 6
+            },
+        },
+        messages: {
+
+            email: {
+                required: "Please enter your Email address",
+                email: "Please enter a valid Email address",
+              
+
+            },
+            password: {
+                required: "Please enter your password",
+                minlength: "Your password must be at least 6 characters long"
+            }
+        }
+
+    });
+
 });

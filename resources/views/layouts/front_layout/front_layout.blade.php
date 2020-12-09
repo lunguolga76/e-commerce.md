@@ -42,6 +42,7 @@
 @include('layouts.front_layout.front_footer')
 <!-- Placed at the end of the document so the pages load faster ============================================= -->
 <script src="{{url('js/front_js/jquery.js')}}" type="text/javascript"></script>
+<script src="{{url('js/front_js/jquery.validate.js')}}" type="text/javascript"></script>
 <script src="{{url('js/front_js/front.min.js')}}" type="text/javascript"></script>
 <script src="{{url('js/front_js/google-code-prettify/prettify.js')}}"></script>
 
