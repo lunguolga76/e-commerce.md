@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Cart;
 use App\Http\Controllers\Controller;
+use App\Sms;
 use App\User;
 use Illuminate\Http\Request;
 use Session;
@@ -42,6 +43,10 @@ class UsersController extends Controller
                         $session_id=Session::get('session_id');
                         Cart::where('session_id',$session_id)->update(['user_id'=>$user_id]);
                     }
+                    //Send Register Sms
+                    $message='Dear customer, you have been successfully registered.Login to your account to access orders and offers';
+                    $mobile=$data['mobile'];
+                    Sms::sendSms($mobile,$message);
                     return redirect('cart');
                 }
             }
